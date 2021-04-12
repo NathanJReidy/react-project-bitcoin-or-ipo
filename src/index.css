@@ -103,7 +103,8 @@ section {
 }
 
 .title {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .bitcoin {
@@ -135,6 +136,7 @@ section {
 .desc {
   color: gray;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .btn {
@@ -149,4 +151,90 @@ section {
 
 .btn:hover {
   background: orange;
+}
+
+.calcContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.btc {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  color: orange;
+}
+
+.company {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  color: red;
+}
+
+.oppCost {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  color: rgb(18, 211, 18);
+}
+
+.investmentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-bottom: 3rem;
+  padding-top: 1rem;
+}
+
+.initialInvestment {
+  margin-bottom: 0;
+  margin-right: 0.25rem;
+  margin-left: 3rem;
+}
+
+.investmentAmount {
+  outline: none;
+  border: none;
+  color: inherit;
+  background: inherit;
+  margin-left: 1rem;
+}
+
+input {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  font-size: 0.875;
+  font-weight: bold;
+}
+/* 
+input::placeholder {
+  font-weight: 500;
+} */
+
+.imgContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.vs {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
