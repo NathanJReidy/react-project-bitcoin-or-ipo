@@ -123,8 +123,8 @@ section {
 }
 
 .img {
-  height: 10rem;
-  width: 10rem;
+  height: 7rem;
+  width: 7rem;
   object-fit: cover;
   border-radius: 9999px;
   margin-bottom: 2rem;
@@ -232,6 +232,8 @@ input::placeholder {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .vs {
