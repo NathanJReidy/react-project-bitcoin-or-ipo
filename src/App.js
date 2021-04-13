@@ -20,13 +20,16 @@ function App() {
           instead of another dumb tech IPO.
         </p>
         <div className="investmentContainer">
-          <h4 className="initialInvestment">Initial Investment: </h4> $
-          <input
-            className="investmentAmount"
-            placeholder="Enter USD amount"
-            value={initialInvestment}
-            onChange={(e) => changeState(e)}
-          />
+          <h4 className="initialInvestment">Initial Investment: </h4>
+          <p className="dollar">$</p>
+          <div className="investmentAmountWrapper">
+            <input
+              className="investmentAmount"
+              placeholder="Enter USD amount"
+              value={initialInvestment}
+              onChange={(e) => changeState(e)}
+            />
+          </div>
         </div>
 
         <Bitcoin initialInvestment={initialInvestment} />
