@@ -15,9 +15,24 @@ const Bitcoin = ({ initialInvestment }) => {
     btcCurrentPrice,
   } = data[dataIndex];
 
+  const checkNumber = (newIndex) => {
+    if (newIndex > data.length - 1) {
+      return 0;
+    } else if (newIndex < 0) {
+      return data.length - 1;
+    } else {
+      return newIndex;
+    }
+  };
+
+  // Returns a random index (changes the company shown when btn is clicked)
   const randomCompany = () => {
     let randomNumber = Math.floor(Math.random() * data.length); // Generates random number between 0 to data array length minus one;
-    setDataIndex(randomNumber);
+    // Ensure random number isn't the same as the existing index
+    if (randomNumber === dataIndex) {
+      randomNumber = dataIndex + 1;
+    }
+    setDataIndex(checkNumber(randomNumber));
   };
 
   // Remove commas from initial investment and turn it into a number
