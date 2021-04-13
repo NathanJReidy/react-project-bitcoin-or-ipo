@@ -6,7 +6,7 @@ const data = [
     id: 1,
     company: "Uber",
     image:
-      "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/bitcoin-icon.png",
+      "https://www.flaticon.com/svg/vstatic/svg/2111/2111742.svg?token=exp=1618219927~hmac=14663d3afc7de46a4822c6c1e32f129c",
     ipoDate: "9 May 2019",
     ipoPrice: 42,
     btcClosingPriceOnIpoDate: 6174.53,
@@ -29,8 +29,7 @@ const data = [
   {
     id: 3,
     company: "Facebook",
-    image:
-      "https://i.pinimg.com/736x/d5/18/ec/d518eceea19f4b1a2ee032ddc634dd7d.jpg",
+    image: "https://image.flaticon.com/icons/png/512/124/124010.png",
     ipoDate: "18 May 2012",
     ipoPrice: "38",
     btcClosingPriceOnIpoDate: 5.1,

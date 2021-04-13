@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Bitcoin from "./Bitcoin";
 
 function App() {
+  const [initialInvestment, setInitialInvestment] = useState(10000);
+
+  const changeState = (e) => {
+    console.log(e.target.value);
+    setInitialInvestment(e.target.value);
+  };
+
   return (
     <main>
       <section className="container">
@@ -11,11 +18,13 @@ function App() {
           instead of another dumb tech IPO.
         </p>
         <div className="investmentContainer">
-          <h4 className="initialInvestment">Initial Investment: </h4>$
+          <h4 className="initialInvestment">Initial Investment: </h4> $
           <input
             className="investmentAmount"
             placeholder="Enter USD amount"
-          ></input>
+            value={initialInvestment}
+            onChange={(e) => changeState(e)}
+          />
         </div>
 
         <Bitcoin />

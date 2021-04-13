@@ -2,6 +2,24 @@ import React, { useState } from "react";
 import data from "./data";
 
 const Bitcoin = () => {
+  const [dataIndex, setDataIndex] = useState(0);
+  const {
+    id,
+    company,
+    image,
+    ipoDate,
+    ipoPrice,
+    btcClosingPriceOnIpoDate,
+    currentDate,
+    companyCurrentPrice,
+    btcCurrentPrice,
+  } = data[dataIndex];
+
+  const randomCompany = () => {
+    let randomNumber = Math.floor(Math.random() * data.length); // Generates random number between 0 to data array length minus one;
+    setDataIndex(randomNumber);
+  };
+
   return (
     <div className="bitcoin">
       <div className="imgContainer">
@@ -10,20 +28,19 @@ const Bitcoin = () => {
           src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/bitcoin-icon.png"
         ></img>
         <h4 className="vs">VS</h4>
-        <img
-          className="img"
-          src="https://www.flaticon.com/svg/vstatic/svg/2111/2111742.svg?token=exp=1618219927~hmac=14663d3afc7de46a4822c6c1e32f129c"
-        ></img>
+        <img className="img" src={image}></img>
       </div>
 
       <h3 className="calcContainer">
         If you bought <h3 className="btc"> &ensp;$10,000 of bitcoin &ensp; </h3>{" "}
         instead of
-        <h3 className="company"> &ensp; Uber's IPO &ensp; </h3>You would have an
-        extra
-        <h3 className="oppCost"> &ensp; $100,000 &ensp; </h3>
+        <h3 className="company"> &ensp; {company}'s IPO &ensp; </h3>You would
+        have an extra
+        <h3 className="oppCost"> &ensp; $100, 000 &ensp; </h3>
       </h3>
-      <button className="btn">I'm an idiot</button>
+      <button className="btn" onClick={randomCompany}>
+        I'm an idiot
+      </button>
     </div>
   );
 };
