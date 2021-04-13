@@ -36,7 +36,7 @@ const Bitcoin = ({ initialInvestment }) => {
     const currentSharesValue = shares * companyCurrentPrice;
     const currentBtcValue = btc * btcCurrentPrice;
     const oppCost = currentBtcValue - currentSharesValue;
-    return oppCost.toLocaleString("en-US");
+    return Number(oppCost.toFixed(2)).toLocaleString("en-US");
   };
 
   return (
