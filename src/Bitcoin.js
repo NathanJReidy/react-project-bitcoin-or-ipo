@@ -20,22 +20,17 @@ const Bitcoin = ({ initialInvestment }) => {
     setDataIndex(randomNumber);
   };
 
-  const oppCost = () => {
-    // Remove commas from initial investment and turn it into a number
-    console.log(`initialInvestment is ${initialInvestment}`);
-    console.log(typeof initialInvestment);
-    const formattedInitialInvestment = parseFloat(
-      initialInvestment.replace(/,/g, "")
-    );
+  // Remove commas from initial investment and turn it into a number
+  const formattedInitialInvestment = parseFloat(
+    initialInvestment.replace(/,/g, "")
+  );
+  const shares = formattedInitialInvestment / ipoPrice;
+  const btc = formattedInitialInvestment / btcClosingPriceOnIpoDate;
+  const currentSharesValue = shares * companyCurrentPrice;
+  const currentBtcValue = btc * btcCurrentPrice;
+  const oppCost = currentBtcValue - currentSharesValue;
 
-    console.log(typeof formattedInitialInvestment);
-
-    console.log(`formattedInitialInvestment is ${formattedInitialInvestment}`);
-    const shares = formattedInitialInvestment / ipoPrice;
-    const btc = formattedInitialInvestment / btcClosingPriceOnIpoDate;
-    const currentSharesValue = shares * companyCurrentPrice;
-    const currentBtcValue = btc * btcCurrentPrice;
-    const oppCost = currentBtcValue - currentSharesValue;
+  const calcOppCost = () => {
     return Number(oppCost.toFixed(2)).toLocaleString("en-US");
   };
 
@@ -56,13 +51,14 @@ const Bitcoin = ({ initialInvestment }) => {
         instead of
         <h3 className="company"> &ensp; {company}'s IPO &ensp; </h3>You would
         have an extra
-        <h3 className="oppCost"> &ensp; ${oppCost()} &ensp; </h3>
+        <h3 className="oppCost"> &ensp; ${calcOppCost()} &ensp; </h3>
       </h3>
       <h4 className="ipoDate">
         {company}'s IPO Date: {ipoDate}
       </h4>
       <h4 className="btcPriceIpoDate">
-        You could have bought bitcoin at ${btcClosingPriceOnIpoDate}!
+        You could have bought {btc.toFixed(2)} btc at $
+        {btcClosingPriceOnIpoDate} USD!
       </h4>
       <button className="btn" onClick={randomCompany}>
         I'm an idiot
