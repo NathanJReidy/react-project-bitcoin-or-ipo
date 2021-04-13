@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import data from "./data";
 
-const Bitcoin = () => {
+const Bitcoin = ({ initialInvestment }) => {
   const [dataIndex, setDataIndex] = useState(0);
   const {
     id,
@@ -20,6 +20,25 @@ const Bitcoin = () => {
     setDataIndex(randomNumber);
   };
 
+  const oppCost = () => {
+    // Remove commas from initial investment and turn it into a number
+    console.log(`initialInvestment is ${initialInvestment}`);
+    console.log(typeof initialInvestment);
+    const formattedInitialInvestment = parseFloat(
+      initialInvestment.replace(/,/g, "")
+    );
+
+    console.log(typeof formattedInitialInvestment);
+
+    console.log(`formattedInitialInvestment is ${formattedInitialInvestment}`);
+    const shares = formattedInitialInvestment / ipoPrice;
+    const btc = formattedInitialInvestment / btcClosingPriceOnIpoDate;
+    const currentSharesValue = shares * companyCurrentPrice;
+    const currentBtcValue = btc * btcCurrentPrice;
+    const oppCost = currentBtcValue - currentSharesValue;
+    return oppCost.toLocaleString("en-US");
+  };
+
   return (
     <div className="bitcoin">
       <div className="imgContainer">
@@ -32,12 +51,19 @@ const Bitcoin = () => {
       </div>
 
       <h3 className="calcContainer">
-        If you bought <h3 className="btc"> &ensp;$10,000 of bitcoin &ensp; </h3>{" "}
+        If you bought{" "}
+        <h3 className="btc"> &ensp;${initialInvestment} of bitcoin &ensp; </h3>{" "}
         instead of
         <h3 className="company"> &ensp; {company}'s IPO &ensp; </h3>You would
         have an extra
-        <h3 className="oppCost"> &ensp; $100, 000 &ensp; </h3>
+        <h3 className="oppCost"> &ensp; ${oppCost()} &ensp; </h3>
       </h3>
+      <h4 className="ipoDate">
+        {company}'s IPO Date: {ipoDate}
+      </h4>
+      <h4 className="btcPriceIpoDate">
+        You could have bought bitcoin at ${btcClosingPriceOnIpoDate}!
+      </h4>
       <button className="btn" onClick={randomCompany}>
         I'm an idiot
       </button>

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Bitcoin from "./Bitcoin";
 
 function App() {
-  const [initialInvestment, setInitialInvestment] = useState(10000);
+  const [initialInvestment, setInitialInvestment] = useState("10,000");
 
   const changeState = (e) => {
-    console.log(e.target.value);
-    setInitialInvestment(e.target.value);
+    setInitialInvestment(
+      Number(e.target.value.replace(/\D/g, "")).toLocaleString()
+    );
   };
+  console.log(initialInvestment);
 
   return (
     <main>
@@ -27,7 +29,7 @@ function App() {
           />
         </div>
 
-        <Bitcoin />
+        <Bitcoin initialInvestment={initialInvestment} />
       </section>
     </main>
   );
