@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
   VerticalBarSeries,
+  LabelSeries,
 } from "react-vis";
 
 const Bitcoin = ({ initialInvestment }) => {
@@ -72,17 +73,35 @@ const Bitcoin = ({ initialInvestment }) => {
   const oppCost = currentBtcValue - currentSharesValue;
   console.log(`oppCost is ${oppCost}`);
 
-  //   const columnChartData = [
-  //     { x: company, y: currentSharesValue },
-  //     { x: "BTC", y: currentBtcValue },
-  //     { x: "Opportunity Cost ", y: oppCost },
-  //   ];
-
   const columnChartData = [
     { x: company, y: currentSharesValue, color: "red" },
     { x: "BTC", y: currentBtcValue, color: "orange" },
     { x: "Opp. Cost", y: oppCost, color: "green" },
   ];
+
+  //   const labelledColumnChartData = [
+  //     {
+  //       x: 0,
+  //       y: 700,
+  //       label: currentSharesValue.toFixed(2).toLocaleString("en-US"),
+  //       style: { fontSize: 10 },
+  //       rotation: -90,
+  //     },
+  //     {
+  //       x: 1,
+  //       y: 5,
+  //       label: currentBtcValue.toFixed(2).toLocaleString("en-US"),
+  //       style: { fontSize: 10 },
+  //       rotation: -90,
+  //     },
+  //     {
+  //       x: 0,
+  //       y: 10,
+  //       label: oppCost.toFixed(2).toLocaleString("en-US"),
+  //       style: { fontSize: 10 },
+  //       rotation: -90,
+  //     },
+  //   ];
 
   const calcOppCost = () => {
     return Number(oppCost.toFixed(2)).toLocaleString("en-US");
@@ -114,12 +133,30 @@ const Bitcoin = ({ initialInvestment }) => {
         <h3 className="oppCost"> &ensp; ${calcOppCost()} &ensp; </h3>
       </h3>
 
-      <XYPlot height={250} width={250} colorType="literal" xType="ordinal">
+      <XYPlot
+        height={250}
+        width={250}
+        margin={{ left: 70 }}
+        colorType="literal"
+        xType="ordinal"
+      >
         {/* <VerticalGridLines /> */}
         <HorizontalGridLines />
         <XAxis />
-        <YAxis />
+        <YAxis tickLabelAngle={-45} />
         <VerticalBarSeries data={columnChartData} />
+        {/* <LabelSeries data={labelledColumnChartData} /> */}
+        <LabelSeries
+          data={columnChartData.map((obj) => {
+            return {
+              ...obj,
+              label: Number(obj.y.toFixed(2)).toLocaleString("en-US"),
+            };
+          })}
+          style={{ fontSize: 11 }}
+          labelAnchorX="middle"
+          labelAnchorY="text-after-edge"
+        />
       </XYPlot>
 
       <h4 className="ipoDate">
