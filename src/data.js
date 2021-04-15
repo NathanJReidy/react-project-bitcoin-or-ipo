@@ -6,7 +6,7 @@ const data = [
     id: 1,
     company: "Uber",
     image:
-      "https://www.flaticon.com/svg/vstatic/svg/2111/2111742.svg?token=exp=1618219927~hmac=14663d3afc7de46a4822c6c1e32f129c",
+      "https://lh3.googleusercontent.com/proxy/P4ad23UCtuWtqNy-MB3JomYyCJrG1o_FRi5RSdSCoKjKnVJbZNGivTzZF2JUNkVMlwXosL5Unzz-mYfen76NT0nyi0kaH5NV3FlKxCh8eHl3KGlMvLE",
     ipoDate: "9 May 2019",
     ipoPrice: 42,
     btcClosingPriceOnIpoDate: 6174.53,
