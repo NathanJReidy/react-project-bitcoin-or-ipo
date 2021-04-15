@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import data from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
+import "../node_modules/react-vis/dist/style.css";
+import {
+  XYPlot,
+  VerticalGridLines,
+  HorizontalGridLines,
+  XAxis,
+  YAxis,
+  VerticalBarSeries,
+} from "react-vis";
 
 const Bitcoin = ({ initialInvestment }) => {
   const [dataIndex, setDataIndex] = useState(0);
@@ -63,22 +72,27 @@ const Bitcoin = ({ initialInvestment }) => {
   const oppCost = currentBtcValue - currentSharesValue;
   console.log(`oppCost is ${oppCost}`);
 
+  //   const columnChartData = [
+  //     { x: company, y: currentSharesValue },
+  //     { x: "BTC", y: currentBtcValue },
+  //     { x: "Opportunity Cost ", y: oppCost },
+  //   ];
+
+  const columnChartData = [
+    { x: 1, y: currentSharesValue, color: "red" },
+    { x: 2, y: currentBtcValue, color: "orange" },
+    { x: 3, y: oppCost, color: "green" },
+  ];
+
   const calcOppCost = () => {
     return Number(oppCost.toFixed(2)).toLocaleString("en-US");
   };
 
+  // The MP3 file is being stored in Google Drive as a shareable link with anyone. I then took the ID only from that
+  // shareable link and put it into the format below where everything after "id=" is the relevant ID for the audio
   const sound = new Audio(
     "https://docs.google.com/uc?export=download&id=13eKa0XAgOn7mATB39bPIg5buNwvcaz2F"
   );
-
-  //   const playSound = () => {
-  //     sound
-  //       .then((resp) => {
-  //         console.log(resp);
-  //         resp.play();
-  //       })
-  //       .catch((error) => console.log(`Error: ${error}`));
-  //   };
 
   return (
     <div className="bitcoin">
@@ -99,6 +113,15 @@ const Bitcoin = ({ initialInvestment }) => {
         have gained an extra
         <h3 className="oppCost"> &ensp; ${calcOppCost()} &ensp; </h3>
       </h3>
+
+      <XYPlot height={200} width={200} colorType="literal">
+        <VerticalGridLines />
+        <HorizontalGridLines />
+        <XAxis />
+        <YAxis />
+        <VerticalBarSeries data={columnChartData} />
+      </XYPlot>
+
       <h4 className="ipoDate">
         {company}'s IPO Date: {ipoDate}
       </h4>
