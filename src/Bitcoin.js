@@ -79,9 +79,9 @@ const Bitcoin = ({ initialInvestment }) => {
   //   ];
 
   const columnChartData = [
-    { x: 1, y: currentSharesValue, color: "red" },
-    { x: 2, y: currentBtcValue, color: "orange" },
-    { x: 3, y: oppCost, color: "green" },
+    { x: company, y: currentSharesValue, color: "red" },
+    { x: "BTC", y: currentBtcValue, color: "orange" },
+    { x: "Opp. Cost", y: oppCost, color: "green" },
   ];
 
   const calcOppCost = () => {
@@ -114,8 +114,8 @@ const Bitcoin = ({ initialInvestment }) => {
         <h3 className="oppCost"> &ensp; ${calcOppCost()} &ensp; </h3>
       </h3>
 
-      <XYPlot height={200} width={200} colorType="literal">
-        <VerticalGridLines />
+      <XYPlot height={250} width={250} colorType="literal" xType="ordinal">
+        {/* <VerticalGridLines /> */}
         <HorizontalGridLines />
         <XAxis />
         <YAxis />
