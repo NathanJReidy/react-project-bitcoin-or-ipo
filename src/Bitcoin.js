@@ -68,7 +68,7 @@ const Bitcoin = ({ initialInvestment }) => {
   };
 
   const sound = new Audio(
-    "https://drive.google.com/file/d/13eKa0XAgOn7mATB39bPIg5buNwvcaz2F/preview.mp3"
+    "https://drive.google.com/file/d/13eKa0XAgOn7mATB39bPIg5buNwvcaz2F/preview"
   );
 
   return (
