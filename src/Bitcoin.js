@@ -68,8 +68,17 @@ const Bitcoin = ({ initialInvestment }) => {
   };
 
   const sound = new Audio(
-    "https://drive.google.com/file/d/13eKa0XAgOn7mATB39bPIg5buNwvcaz2F/preview"
+    "https://docs.google.com/uc?export=download&id=13eKa0XAgOn7mATB39bPIg5buNwvcaz2F"
   );
+
+  //   const playSound = () => {
+  //     sound
+  //       .then((resp) => {
+  //         console.log(resp);
+  //         resp.play();
+  //       })
+  //       .catch((error) => console.log(`Error: ${error}`));
+  //   };
 
   return (
     <div className="bitcoin">
@@ -105,7 +114,7 @@ const Bitcoin = ({ initialInvestment }) => {
         className="btn"
         onClick={() => {
           randomCompany();
-          sound.play().catch((e) => console.error(e));
+          sound.play();
         }}
       >
         I'm an idiot
