@@ -59,6 +59,18 @@ const data = [
     companyCurrentPrice: 70.86,
     btcCurrentPrice: 59893.45,
   },
+  {
+    id: 6,
+    company: "Airbnb",
+    image:
+      "https://assets.entrepreneur.com/content/3x2/2000/1405612741-airbnb-why-new-logo.jpg",
+    ipoDate: "10 December 2020",
+    ipoPrice: 146,
+    btcClosingPriceOnIpoDate: 15455.4,
+    currentDate: "12 April 2021",
+    companyCurrentPrice: 176.49,
+    btcCurrentPrice: 59893.45,
+  },
 ];
 
 export default data;

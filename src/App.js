@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Bitcoin from "./Bitcoin";
 
 function App() {
-  const [initialInvestment, setInitialInvestment] = useState("10,000");
+  const [initialInvestment, setInitialInvestment] = useState("");
 
   const changeState = (e) => {
     setInitialInvestment(
       Number(e.target.value.replace(/\D/g, "")).toLocaleString()
     );
   };
+
   console.log(initialInvestment);
 
   return (
@@ -20,19 +21,27 @@ function App() {
           instead of another dumb tech IPO.
         </p>
         <div className="investmentContainer">
-          <h4 className="initialInvestment">Initial Investment: </h4>
-          <p className="dollar">$</p>
+          <h4 className="initialInvestment">Initial Investment: $</h4>
+          {/* <p className="dollar">$</p> */}
           <div className="investmentAmountWrapper">
             <input
               className="investmentAmount"
-              placeholder="Enter USD amount"
+              placeholder="Enter USD"
               value={initialInvestment}
               onChange={(e) => changeState(e)}
+              style={{
+                width:
+                  initialInvestment != ""
+                    ? (initialInvestment.length + 1) * 8
+                    : "5rem",
+              }}
             />
           </div>
         </div>
 
-        <Bitcoin initialInvestment={initialInvestment} />
+        {initialInvestment != "" ? (
+          <Bitcoin initialInvestment={initialInvestment} />
+        ) : null}
       </section>
     </main>
   );
