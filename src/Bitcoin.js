@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import data from "./data";
+import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 
 const Bitcoin = ({ initialInvestment }) => {
   const [dataIndex, setDataIndex] = useState(0);
@@ -25,6 +26,20 @@ const Bitcoin = ({ initialInvestment }) => {
     }
   };
 
+  const nextCompany = () => {
+    setDataIndex((index) => {
+      let newIndex = index + 1;
+      return checkNumber(newIndex);
+    });
+  };
+
+  const prevCompany = () => {
+    setDataIndex((index) => {
+      let newIndex = index - 1;
+      return checkNumber(newIndex);
+    });
+  };
+
   // Returns a random index (changes the company shown when btn is clicked)
   const randomCompany = () => {
     let randomNumber = Math.floor(Math.random() * data.length); // Generates random number between 0 to data array length minus one;
@@ -43,7 +58,10 @@ const Bitcoin = ({ initialInvestment }) => {
   const btc = formattedInitialInvestment / btcClosingPriceOnIpoDate;
   const currentSharesValue = shares * companyCurrentPrice;
   const currentBtcValue = btc * btcCurrentPrice;
+  console.log(`currentSharesValue is ${currentSharesValue}`);
+  console.log(`currentBtcValue is ${currentBtcValue}`);
   const oppCost = currentBtcValue - currentSharesValue;
+  console.log(`oppCost is ${oppCost}`);
 
   const calcOppCost = () => {
     return Number(oppCost.toFixed(2)).toLocaleString("en-US");
@@ -65,7 +83,7 @@ const Bitcoin = ({ initialInvestment }) => {
         <h3 className="btc"> &ensp;${initialInvestment} of bitcoin &ensp; </h3>{" "}
         instead of
         <h3 className="company"> &ensp; {company}'s IPO &ensp; </h3>You would
-        have an extra
+        have gained an extra
         <h3 className="oppCost"> &ensp; ${calcOppCost()} &ensp; </h3>
       </h3>
       <h4 className="ipoDate">
@@ -75,6 +93,10 @@ const Bitcoin = ({ initialInvestment }) => {
         You could have bought {btc.toFixed(2)} btc at $
         {btcClosingPriceOnIpoDate} USD each!
       </h4>
+      <div className="btnContainer">
+        <FaChevronLeft className="previousIcon" onClick={prevCompany} />
+        <FaChevronRight className="nextIcon" onClick={nextCompany} />
+      </div>
       <button className="btn" onClick={randomCompany}>
         I'm an idiot
       </button>
