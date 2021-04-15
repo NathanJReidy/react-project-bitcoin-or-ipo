@@ -73,7 +73,7 @@ const Bitcoin = ({ initialInvestment }) => {
       </h4>
       <h4 className="btcPriceIpoDate">
         You could have bought {btc.toFixed(2)} btc at $
-        {btcClosingPriceOnIpoDate} USD!
+        {btcClosingPriceOnIpoDate} USD each!
       </h4>
       <button className="btn" onClick={randomCompany}>
         I'm an idiot
