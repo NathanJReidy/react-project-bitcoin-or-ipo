@@ -153,7 +153,7 @@ const Bitcoin = ({ initialInvestment }) => {
               label: Number(obj.y.toFixed(2)).toLocaleString("en-US"),
             };
           })}
-          style={{ fontSize: 11 }}
+          style={{ fontSize: 10 }}
           labelAnchorX="middle"
           labelAnchorY="text-after-edge"
         />
