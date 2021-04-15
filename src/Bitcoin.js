@@ -67,6 +67,10 @@ const Bitcoin = ({ initialInvestment }) => {
     return Number(oppCost.toFixed(2)).toLocaleString("en-US");
   };
 
+  const sound = new Audio(
+    "https://drive.google.com/file/d/13eKa0XAgOn7mATB39bPIg5buNwvcaz2F/preview.mp3"
+  );
+
   return (
     <div className="bitcoin">
       <div className="imgContainer">
@@ -97,7 +101,13 @@ const Bitcoin = ({ initialInvestment }) => {
         <FaChevronLeft className="previousIcon" onClick={prevCompany} />
         <FaChevronRight className="nextIcon" onClick={nextCompany} />
       </div>
-      <button className="btn" onClick={randomCompany}>
+      <button
+        className="btn"
+        onClick={() => {
+          randomCompany();
+          sound.play().catch((e) => console.error(e));
+        }}
+      >
         I'm an idiot
       </button>
     </div>

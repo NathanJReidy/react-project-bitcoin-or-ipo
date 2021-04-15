@@ -278,6 +278,7 @@ input::placeholder {
 .ipoDate {
   margin-bottom: 0.5rem;
   font-weight: 400;
+  text-align: center;
 }
 
 .btcPriceIpoDate {
