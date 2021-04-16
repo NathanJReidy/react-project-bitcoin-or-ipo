@@ -17,7 +17,7 @@ function App() {
       <section className="container">
         <h2 className="title">Bitcoin or IPO</h2>
         <p className="desc">
-          Calculate how much more money you would have if you bought bitcoin
+          Calculate the opportunity cost & time saved if you bought bitcoin
           instead of another dumb tech IPO.
         </p>
         <div className="investmentContainer">
