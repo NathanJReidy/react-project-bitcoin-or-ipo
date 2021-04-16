@@ -3,11 +3,16 @@ import Bitcoin from "./Bitcoin";
 
 function App() {
   const [initialInvestment, setInitialInvestment] = useState("");
+  const [annualIncome, setAnnualIncome] = useState("");
 
   const changeState = (e) => {
     setInitialInvestment(
       Number(e.target.value.replace(/\D/g, "")).toLocaleString()
     );
+  };
+
+  const changeIncomeState = (e) => {
+    setAnnualIncome(Number(e.target.value.replace(/\D/g, "")).toLocaleString());
   };
 
   console.log(initialInvestment);
@@ -22,7 +27,6 @@ function App() {
         </p>
         <div className="investmentContainer">
           <h4 className="initialInvestment">Initial Investment: $</h4>
-          {/* <p className="dollar">$</p> */}
           <div className="investmentAmountWrapper">
             <input
               className="investmentAmount"
@@ -38,9 +42,27 @@ function App() {
             />
           </div>
         </div>
+        <div className="incomeContainer">
+          <h4 className="income">Annual Income: $</h4>
+          <div className="incomeAmountWrapper">
+            <input
+              className="incomeAmount"
+              placeholder="Enter USD"
+              value={annualIncome}
+              onChange={(e) => changeIncomeState(e)}
+              style={{
+                width:
+                  annualIncome != "" ? (annualIncome.length + 1) * 8 : "5rem",
+              }}
+            />
+          </div>
+        </div>
 
-        {initialInvestment != "" ? (
-          <Bitcoin initialInvestment={initialInvestment} />
+        {initialInvestment != "" && annualIncome != "" ? (
+          <Bitcoin
+            initialInvestment={initialInvestment}
+            annualIncome={annualIncome}
+          />
         ) : null}
       </section>
     </main>

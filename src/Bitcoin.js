@@ -12,7 +12,7 @@ import {
   LabelSeries,
 } from "react-vis";
 
-const Bitcoin = ({ initialInvestment }) => {
+const Bitcoin = ({ initialInvestment, annualIncome }) => {
   const [dataIndex, setDataIndex] = useState(0);
   const {
     id,
@@ -64,16 +64,21 @@ const Bitcoin = ({ initialInvestment }) => {
   const formattedInitialInvestment = parseFloat(
     initialInvestment.replace(/,/g, "")
   );
+  // Remove commas from annual income and turn it into a number
+  const formattedAnnualIncome = parseFloat(annualIncome.replace(/,/g, ""));
+  //   console.log(`formattedAnnualIncome is ${formattedAnnualIncome}`);
+
   const shares = formattedInitialInvestment / ipoPrice;
   const btc = formattedInitialInvestment / btcClosingPriceOnIpoDate;
   const currentSharesValue = shares * companyCurrentPrice;
   const currentBtcValue = btc * btcCurrentPrice;
-  console.log(`currentSharesValue is ${currentSharesValue}`);
-  console.log(`currentBtcValue is ${currentBtcValue}`);
+  //   console.log(`currentSharesValue is ${currentSharesValue}`);
+  //   console.log(`currentBtcValue is ${currentBtcValue}`);
   const oppCost = currentBtcValue - currentSharesValue;
-  console.log(`oppCost is ${oppCost}`);
-  const medianPersonalIncome2019USA = 35977;
-  const oppTime = (oppCost / medianPersonalIncome2019USA).toFixed(1);
+  //   console.log(`oppCost is ${oppCost}`);
+
+  //   const medianPersonalIncome2019USA = 35977;
+  const oppTime = (oppCost / formattedAnnualIncome).toFixed(1);
   const oppTimeYears = oppTime.toString().split(".")[0];
   const oppTimeMonths = Math.floor(
     Number("0." + oppTime.toString().split(".")[1]) * 12
@@ -84,30 +89,6 @@ const Bitcoin = ({ initialInvestment }) => {
     { x: "BTC", y: currentBtcValue, color: "orange" },
     { x: "Opp. Cost", y: oppCost, color: "green" },
   ];
-
-  //   const labelledColumnChartData = [
-  //     {
-  //       x: 0,
-  //       y: 700,
-  //       label: currentSharesValue.toFixed(2).toLocaleString("en-US"),
-  //       style: { fontSize: 10 },
-  //       rotation: -90,
-  //     },
-  //     {
-  //       x: 1,
-  //       y: 5,
-  //       label: currentBtcValue.toFixed(2).toLocaleString("en-US"),
-  //       style: { fontSize: 10 },
-  //       rotation: -90,
-  //     },
-  //     {
-  //       x: 0,
-  //       y: 10,
-  //       label: oppCost.toFixed(2).toLocaleString("en-US"),
-  //       style: { fontSize: 10 },
-  //       rotation: -90,
-  //     },
-  //   ];
 
   const calcOppCost = () => {
     return Number(oppCost.toFixed(2)).toLocaleString("en-US");
@@ -157,12 +138,10 @@ const Bitcoin = ({ initialInvestment }) => {
         colorType="literal"
         xType="ordinal"
       >
-        {/* <VerticalGridLines /> */}
         <HorizontalGridLines />
         <XAxis />
         <YAxis tickLabelAngle={-45} />
         <VerticalBarSeries data={columnChartData} />
-        {/* <LabelSeries data={labelledColumnChartData} /> */}
         <LabelSeries
           data={columnChartData.map((obj) => {
             return {

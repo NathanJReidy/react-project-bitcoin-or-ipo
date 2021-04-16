@@ -233,7 +233,7 @@ section {
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
   padding-top: 1rem;
   width: 100%;
   /* margin-left: 1.5rem; */
@@ -294,6 +294,49 @@ input {
 input::placeholder {
   font-weight: 500;
 } */
+
+.incomeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-bottom: 3rem;
+  padding-top: 1rem;
+  width: 100%;
+  /* margin-left: 1.5rem; */
+}
+
+.income {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0;
+  margin-right: 0.25rem;
+  /* width: 50%; */
+  /* margin-left: 3rem;  */
+}
+
+.incomeAmountWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* width: 50%; */
+  /* width: 5rem; */
+}
+
+.incomeAmount {
+  display: block;
+  /* width: inherit; */
+  font-size: inherit;
+  /* font-size: 0.875rem; */
+  outline: none;
+  border: none;
+  color: inherit;
+  background: inherit;
+  text-align: start;
+  /* width: 5rem; */
+}
 
 .imgContainer {
   display: flex;
