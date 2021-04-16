@@ -41,7 +41,7 @@ h2 {
   font-size: 2rem;
 }
 h3 {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 h4 {
   font-size: 0.875rem;
@@ -58,7 +58,7 @@ p {
     font-size: 2.5rem;
   }
   h3 {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
   h4 {
     font-size: 1rem;
@@ -123,8 +123,8 @@ section {
 }
 
 .img {
-  height: 6rem;
-  width: 6rem;
+  height: 5rem;
+  width: 5rem;
   object-fit: cover;
   border-radius: 9999px;
   margin-bottom: 2rem;
@@ -156,19 +156,45 @@ section {
 .calcContainer {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  /* flex-grow: 1; */
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 2rem;
   text-align: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  /* word-break: break-word;
+  overflow-wrap: break-word; */
+  /* min-width: 10%; */
+}
+
+@media (max-width: 1000px) {
+  .calcContainer {
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
+}
+
+.span {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+  flex-wrap: wrap;
+  margin: 0;
+  /* 
+  min-width: 30%; */
 }
 
 .btc {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  /* justify-content: center;
+  align-items: center; */
+  /* min-width: 40%; */
+  /* flex-wrap: wrap; */
   margin: 0;
   color: orange;
 }
@@ -176,9 +202,8 @@ section {
 .company {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  /* justify-content: center;
+  align-items: center; */
   margin: 0;
   color: red;
 }
@@ -186,11 +211,20 @@ section {
 .oppCost {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  /* justify-content: center;
+  align-items: center; */
+
   margin: 0;
   color: rgb(18, 211, 18);
+}
+
+.oppTime {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+  margin: 0;
+  color: rgb(38, 79, 245);
 }
 
 .investmentContainer {
@@ -271,8 +305,8 @@ input::placeholder {
 }
 
 .vs {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .ipoDate {

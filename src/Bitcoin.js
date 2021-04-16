@@ -72,6 +72,8 @@ const Bitcoin = ({ initialInvestment }) => {
   console.log(`currentBtcValue is ${currentBtcValue}`);
   const oppCost = currentBtcValue - currentSharesValue;
   console.log(`oppCost is ${oppCost}`);
+  const medianPersonalIncome2019USA = 35977;
+  const oppTime = oppCost / medianPersonalIncome2019USA;
 
   const columnChartData = [
     { x: company, y: currentSharesValue, color: "red" },
@@ -125,12 +127,19 @@ const Bitcoin = ({ initialInvestment }) => {
       </div>
 
       <h3 className="calcContainer">
-        If you bought{" "}
-        <h3 className="btc"> &ensp;${initialInvestment} of bitcoin &ensp; </h3>{" "}
-        instead of
-        <h3 className="company"> &ensp; {company}'s IPO &ensp; </h3>You would
-        have gained an extra
-        <h3 className="oppCost"> &ensp; ${calcOppCost()} &ensp; </h3>
+        <span className="span">If you bought</span>
+        <span className="btc">
+          &ensp;${initialInvestment} of bitcoin &ensp;{" "}
+        </span>{" "}
+        <span className="span">instead of</span>
+        <span className="company"> &ensp; {company}'s IPO &ensp; </span>
+        <span className="span">You would have gained an extra</span>
+        <span className="oppCost"> &ensp; ${calcOppCost()} &ensp; </span>
+        <span className="span">& saved</span>
+        <span className="oppTime">&ensp; {oppTime.toFixed(1)} years</span>
+        <span className="span">
+          of your life that you would have otherwise worked
+        </span>
       </h3>
 
       <XYPlot
@@ -153,7 +162,7 @@ const Bitcoin = ({ initialInvestment }) => {
               label: Number(obj.y.toFixed(2)).toLocaleString("en-US"),
             };
           })}
-          style={{ fontSize: 10 }}
+          style={{ fontSize: 8 }}
           labelAnchorX="middle"
           labelAnchorY="text-after-edge"
         />
