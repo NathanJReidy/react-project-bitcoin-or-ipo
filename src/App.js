@@ -20,7 +20,18 @@ function App() {
   return (
     <main>
       <section className="container">
-        <h2 className="title">Bitcoin or IPO</h2>
+        <h2 className="title">
+          Bitcoin{" "}
+          <img
+            className="btcGif"
+            src="https://media.giphy.com/media/qlWEGYdh86lD03QW9N/giphy.gif"
+          />{" "}
+          or IPO{" "}
+          <img
+            className="ipoGif"
+            src="https://media.giphy.com/media/JtBZm3Getg3dqxK0zP/giphy.gif"
+          />
+        </h2>
         <p className="desc">
           Calculate the opportunity cost & time saved if you bought bitcoin
           instead of another dumb tech IPO.

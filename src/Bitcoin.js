@@ -126,9 +126,7 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
             ? `${oppTimeMonths} months`
             : `${oppTimeYears} years & ${oppTimeMonths} months`}
         </span>
-        <span className="span">
-          of your life that you would have otherwise worked
-        </span>
+        <span className="span">of your life spent working</span>
       </h3>
 
       <XYPlot
@@ -137,6 +135,7 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
         margin={{ left: 70 }}
         colorType="literal"
         xType="ordinal"
+        className="xyPlot"
       >
         <HorizontalGridLines />
         <XAxis />
