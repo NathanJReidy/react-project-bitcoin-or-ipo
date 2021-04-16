@@ -100,6 +100,38 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
     "https://docs.google.com/uc?export=download&id=13eKa0XAgOn7mATB39bPIg5buNwvcaz2F"
   );
 
+  const formatYearMonth = () => {
+    if (oppTimeYears == 0 && oppTimeMonths != 1) {
+      return `${oppTimeMonths} months`; // e.g. 2 months, 0 months
+    } else if (oppTimeMonths == 0 && oppTimeYears != 0 && oppTimeYears != 1) {
+      return `${oppTimeYears} years`; // e.g. 2 years,
+    } else if (oppTimeMonths == 0 && oppTimeYears != 0 && oppTimeYears == 1) {
+      return `${oppTimeYears} year`; // e.g. 1 year
+    } else if (oppTimeYears == 0 && oppTimeMonths == 1) {
+      return `${oppTimeMonths} month`; // e.g. 1 month
+    } else if (oppTimeYears == 1 && oppTimeMonths == 1) {
+      return `${oppTimeYears} year & ${oppTimeMonths} month`;
+    } else if (oppTimeYears == 1 && oppTimeMonths > 1) {
+      return `${oppTimeYears} year & ${oppTimeMonths} months`;
+    } else if (oppTimeYears > 1 && oppTimeMonths == 1) {
+      return `${oppTimeYears} years & ${oppTimeMonths} month`;
+    } else if (oppTimeYears > 1 && oppTimeMonths > 1) {
+      return `${oppTimeYears} years & ${oppTimeMonths} months`;
+    }
+  };
+
+  // zero years, no months - yes
+  // zero years, one month - yes
+  // zero years, months - yes
+  // one year, no months - yes
+  // one year, one month - yes
+  // one year, months - yes
+  // two years, no months - yes
+  // two years, one month - yes
+  // two years, months - yes
+  console.log(`annual income is ${annualIncome}`);
+  console.log(`formatted annual income is ${formattedAnnualIncome}`);
+
   return (
     <div className="bitcoin">
       <div className="imgContainer">
@@ -120,13 +152,13 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
         <span className="company"> &ensp; {company}'s IPO &ensp; </span>
         <span className="span">You would have gained an extra</span>
         <span className="oppCost"> &ensp; ${calcOppCost()} &ensp; </span>
-        <span className="span">& saved &ensp;</span>
-        <span className="oppTime">
-          {oppTimeYears == 0
-            ? `${oppTimeMonths} months`
-            : `${oppTimeYears} years & ${oppTimeMonths} months`}
-        </span>
-        <span className="span">of your life spent working</span>
+        {annualIncome != 0 ? (
+          <>
+            <span className="span">& saved &ensp;</span>
+            <span className="oppTime">{formatYearMonth()}</span>
+            <span className="span">&ensp; of your life spent working</span>
+          </>
+        ) : null}
       </h3>
 
       <XYPlot
