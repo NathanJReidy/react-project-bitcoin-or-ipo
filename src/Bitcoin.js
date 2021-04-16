@@ -73,7 +73,11 @@ const Bitcoin = ({ initialInvestment }) => {
   const oppCost = currentBtcValue - currentSharesValue;
   console.log(`oppCost is ${oppCost}`);
   const medianPersonalIncome2019USA = 35977;
-  const oppTime = oppCost / medianPersonalIncome2019USA;
+  const oppTime = (oppCost / medianPersonalIncome2019USA).toFixed(1);
+  const oppTimeYears = oppTime.toString().split(".")[0];
+  const oppTimeMonths = Math.floor(
+    Number("0." + oppTime.toString().split(".")[1]) * 12
+  );
 
   const columnChartData = [
     { x: company, y: currentSharesValue, color: "red" },
@@ -135,15 +139,19 @@ const Bitcoin = ({ initialInvestment }) => {
         <span className="company"> &ensp; {company}'s IPO &ensp; </span>
         <span className="span">You would have gained an extra</span>
         <span className="oppCost"> &ensp; ${calcOppCost()} &ensp; </span>
-        <span className="span">& saved</span>
-        <span className="oppTime">&ensp; {oppTime.toFixed(1)} years</span>
+        <span className="span">& saved &ensp;</span>
+        <span className="oppTime">
+          {oppTimeYears == 0
+            ? `${oppTimeMonths} months`
+            : `${oppTimeYears} years & ${oppTimeMonths} months`}
+        </span>
         <span className="span">
           of your life that you would have otherwise worked
         </span>
       </h3>
 
       <XYPlot
-        height={250}
+        height={200}
         width={250}
         margin={{ left: 70 }}
         colorType="literal"
