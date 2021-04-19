@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Bitcoin from "./Bitcoin";
 
 function App() {
   const [initialInvestment, setInitialInvestment] = useState("");
   const [annualIncome, setAnnualIncome] = useState("");
+  const btcApi = "https://api.coindesk.com/v1/bpi/currentprice.json";
+  const [btcCurrentPriceNew, setBtcCurrentPriceNew] = useState(59893);
 
   const changeState = (e) => {
     setInitialInvestment(
@@ -15,7 +17,23 @@ function App() {
     setAnnualIncome(Number(e.target.value.replace(/\D/g, "")).toLocaleString());
   };
 
-  console.log(initialInvestment);
+  // Fetch live btc price from API
+  const fetchBtcPrice = async () => {
+    try {
+      const response = await fetch(btcApi);
+      const btcJson = await response.json();
+      // Remove commas and turn it into a number
+      const btcCurrentNew = parseFloat(btcJson.bpi.USD.rate.replace(/,/g, ""));
+      console.log(`btcCurrentNew is ${btcCurrentNew}`);
+      setBtcCurrentPriceNew(btcCurrentNew);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBtcPrice();
+  }, []);
 
   return (
     <main>
@@ -73,6 +91,7 @@ function App() {
           <Bitcoin
             initialInvestment={initialInvestment}
             annualIncome={annualIncome}
+            btcCurrentPriceNew={btcCurrentPriceNew}
           />
         ) : null}
       </section>

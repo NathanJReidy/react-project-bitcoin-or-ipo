@@ -12,11 +12,12 @@ import {
   LabelSeries,
 } from "react-vis";
 
-const Bitcoin = ({ initialInvestment, annualIncome }) => {
+const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
   const [dataIndex, setDataIndex] = useState(0);
   const {
     id,
     company,
+    symbol,
     image,
     ipoDate,
     ipoPrice,
@@ -25,8 +26,32 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
     companyCurrentPrice,
   } = data[dataIndex];
 
-  const btcApi = "https://api.coindesk.com/v1/bpi/currentprice.json";
-  const [btcCurrentPriceNew, setBtcCurrentPriceNew] = useState(59893);
+  const [currentCompanyClosingPrice, setCurrentCompanyClosingPrice] = useState(
+    companyCurrentPrice
+  );
+
+  const companyApi = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=HS5TVS0YI1MOIRX6`;
+
+  console.log(`symbol is ${symbol}`);
+  console.log(companyApi);
+
+  // Fetch latest company closing price from API
+  const fetchCompanyPrice = async () => {
+    try {
+      console.log("try");
+      console.log(companyApi);
+      const companyResponse = await fetch(companyApi);
+      const companyJson = await companyResponse.json();
+      // Remove commas and turn it into a number
+      const closingPrice = parseFloat(
+        companyJson["Global Quote"]["08. previous close"].replace(/,/g, "")
+      );
+      console.log(`closing price is ${closingPrice}`);
+      setCurrentCompanyClosingPrice(closingPrice);
+    } catch (error) {
+      console.log(`the error is: ${error}`);
+    }
+  };
 
   // Ensures chosen data index is within length of array
   const checkNumber = (newIndex) => {
@@ -65,24 +90,6 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
     setDataIndex(checkNumber(randomNumber));
   };
 
-  // Fetch live btc price from API
-  const fetchBtcPrice = async () => {
-    try {
-      const response = await fetch(btcApi);
-      const btcJson = await response.json();
-      // Remove commas and turn it into a number
-      const btcCurrentNew = parseFloat(btcJson.bpi.USD.rate.replace(/,/g, ""));
-      console.log(`btcCurrentNew is ${btcCurrentNew}`);
-      setBtcCurrentPriceNew(btcCurrentNew);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchBtcPrice();
-  }, []);
-
   // Remove commas from initial investment and turn it into a number
   const formattedInitialInvestment = parseFloat(
     initialInvestment.replace(/,/g, "")
@@ -91,7 +98,8 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
   const formattedAnnualIncome = parseFloat(annualIncome.replace(/,/g, ""));
   const shares = formattedInitialInvestment / ipoPrice;
   const btc = formattedInitialInvestment / btcClosingPriceOnIpoDate;
-  const currentSharesValue = shares * companyCurrentPrice;
+  const currentSharesValue = shares * currentCompanyClosingPrice;
+  console.log(`currentCompanyClosingPrice is ${currentCompanyClosingPrice}`);
   const currentBtcValue = btc * btcCurrentPriceNew;
   const oppCost = currentBtcValue - currentSharesValue;
   const oppTime = (oppCost / formattedAnnualIncome).toFixed(1);
@@ -138,6 +146,11 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
       return `${oppTimeYears} years & ${oppTimeMonths} months`;
     }
   };
+
+  // Fetch current company closing price
+  useEffect(() => {
+    fetchCompanyPrice();
+  }, [dataIndex]);
 
   return (
     <div className="bitcoin">
