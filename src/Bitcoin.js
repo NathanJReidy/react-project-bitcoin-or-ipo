@@ -22,13 +22,14 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
     ipoDate,
     ipoPrice,
     btcClosingPriceOnIpoDate,
-    currentDate,
-    companyCurrentPrice,
+    defaultDate,
+    defaultCompanyPrice,
   } = data[dataIndex];
 
   const [currentCompanyClosingPrice, setCurrentCompanyClosingPrice] = useState(
-    companyCurrentPrice
+    defaultCompanyPrice
   );
+  const [isLoading, setIsLoading] = useState(true);
 
   const companyApi = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=HS5TVS0YI1MOIRX6`;
 
@@ -37,11 +38,13 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
 
   // Fetch latest company closing price from API
   const fetchCompanyPrice = async () => {
+    setIsLoading(true);
     try {
       console.log("try");
       console.log(companyApi);
       const companyResponse = await fetch(companyApi);
       const companyJson = await companyResponse.json();
+      setIsLoading(false);
       // Remove commas and turn it into a number
       const closingPrice = parseFloat(
         companyJson["Global Quote"]["08. previous close"].replace(/,/g, "")
@@ -49,6 +52,7 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
       console.log(`closing price is ${closingPrice}`);
       setCurrentCompanyClosingPrice(closingPrice);
     } catch (error) {
+      setIsLoading(false);
       console.log(`the error is: ${error}`);
     }
   };
@@ -147,10 +151,19 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
     }
   };
 
-  // Fetch current company closing price
+  // Automatically scrolls user down to the bitcoin calculations component
+  const executeScroll = () => {
+    window.scrollTo({ behavior: "smooth", top: 200 });
+  };
+
+  // Fetch the company's current closing price
   useEffect(() => {
     fetchCompanyPrice();
   }, [dataIndex]);
+
+  useEffect(() => {
+    executeScroll();
+  }, [isLoading]);
 
   return (
     <div className="bitcoin">
@@ -163,56 +176,58 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
         <img className="img" src={image}></img>
       </div>
 
-      <h3 className="calcContainer">
-        <span className="span">If you bought</span>
-        <span className="btc">
-          &ensp;${initialInvestment} of bitcoin &ensp;{" "}
-        </span>{" "}
-        <span className="span">instead of</span>
-        <span className="company"> &ensp; {company}'s IPO &ensp; </span>
-        <span className="span">You would have gained an extra</span>
-        <span className="oppCost"> &ensp; ${calcOppCost()} &ensp; </span>
-        {annualIncome != 0 ? (
-          <>
-            <span className="span">& saved &ensp;</span>
-            <span className="oppTime">{formatYearMonth()}</span>
-            <span className="span">&ensp; of your life spent working</span>
-          </>
-        ) : null}
-      </h3>
-
-      <XYPlot
-        height={200}
-        width={250}
-        margin={{ left: 70 }}
-        colorType="literal"
-        xType="ordinal"
-        className="xyPlot"
-      >
-        <HorizontalGridLines />
-        <XAxis />
-        <YAxis tickLabelAngle={-45} />
-        <VerticalBarSeries data={columnChartData} />
-        <LabelSeries
-          data={columnChartData.map((obj) => {
-            return {
-              ...obj,
-              label: Number(obj.y.toFixed(2)).toLocaleString("en-US"),
-            };
-          })}
-          style={{ fontSize: 8 }}
-          labelAnchorX="middle"
-          labelAnchorY="text-after-edge"
-        />
-      </XYPlot>
-
-      <h4 className="ipoDate">
-        {company}'s IPO Date: {ipoDate}
-      </h4>
-      <h4 className="btcPriceIpoDate">
-        You could have bought {btc.toFixed(2)} btc at $
-        {btcClosingPriceOnIpoDate} USD each!
-      </h4>
+      {isLoading ? null : (
+        <>
+          <h3 className="calcContainer">
+            <span className="span">If you bought</span>
+            <span className="btc">
+              &ensp;${initialInvestment} of bitcoin &ensp;{" "}
+            </span>{" "}
+            <span className="span">instead of</span>
+            <span className="company"> &ensp; {company}'s IPO &ensp; </span>
+            <span className="span">You would have gained an extra</span>
+            <span className="oppCost"> &ensp; ${calcOppCost()} &ensp; </span>
+            {annualIncome != 0 ? (
+              <>
+                <span className="span">& saved &ensp;</span>
+                <span className="oppTime">{formatYearMonth()}</span>
+                <span className="span">&ensp; of your life spent working</span>
+              </>
+            ) : null}
+          </h3>
+          <XYPlot
+            height={200}
+            width={250}
+            margin={{ left: 70 }}
+            colorType="literal"
+            xType="ordinal"
+            className="xyPlot"
+          >
+            <HorizontalGridLines />
+            <XAxis />
+            <YAxis tickLabelAngle={-45} />
+            <VerticalBarSeries data={columnChartData} />
+            <LabelSeries
+              data={columnChartData.map((obj) => {
+                return {
+                  ...obj,
+                  label: Number(obj.y.toFixed(2)).toLocaleString("en-US"),
+                };
+              })}
+              style={{ fontSize: 8 }}
+              labelAnchorX="middle"
+              labelAnchorY="text-after-edge"
+            />
+          </XYPlot>
+          <h4 className="ipoDate">
+            {company}'s IPO Date: {ipoDate}
+          </h4>
+          <h4 className="btcPriceIpoDate">
+            You could have bought {btc.toFixed(2)} btc at $
+            {btcClosingPriceOnIpoDate} USD each!
+          </h4>
+        </>
+      )}
       <div className="btnContainer">
         <FaChevronLeft className="previousIcon" onClick={prevCompany} />
         <FaChevronRight className="nextIcon" onClick={nextCompany} />
