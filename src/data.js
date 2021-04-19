@@ -9,7 +9,7 @@ const data = [
     company: "Uber",
     symbol: "uber",
     image:
-      "https://lh3.googleusercontent.com/proxy/P4ad23UCtuWtqNy-MB3JomYyCJrG1o_FRi5RSdSCoKjKnVJbZNGivTzZF2JUNkVMlwXosL5Unzz-mYfen76NT0nyi0kaH5NV3FlKxCh8eHl3KGlMvLE",
+      "http://static1.squarespace.com/static/58a96e88c534a5fdedb98365/58b6d1f93a04110be820d756/59f817088165f5087ced04dc/1536723248307/uberlogo.jpg?format=1500w",
     ipoDate: "9 May 2019",
     ipoPrice: 42,
     btcClosingPriceOnIpoDate: 6174.53,
