@@ -10,6 +10,7 @@ import {
   YAxis,
   VerticalBarSeries,
   LabelSeries,
+  ChartLabel,
 } from "react-vis";
 
 const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
@@ -206,6 +207,17 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
             <HorizontalGridLines />
             <XAxis />
             <YAxis tickLabelAngle={-45} />
+            <ChartLabel
+              text="Returns"
+              className="alt-y-label"
+              includeMargin={true}
+              xPercent={0.03}
+              yPercent={0.00001}
+              style={{
+                transform: "rotate(-90)",
+                textAnchor: "start",
+              }}
+            />
             <VerticalBarSeries data={columnChartData} />
             <LabelSeries
               data={columnChartData.map((obj) => {
