@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 import "../node_modules/react-vis/dist/style.css";
@@ -23,9 +23,12 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
     btcClosingPriceOnIpoDate,
     currentDate,
     companyCurrentPrice,
-    btcCurrentPrice,
   } = data[dataIndex];
 
+  const btcApi = "https://api.coindesk.com/v1/bpi/currentprice.json";
+  const [btcCurrentPriceNew, setBtcCurrentPriceNew] = useState(59893);
+
+  // Ensures chosen data index is within length of array
   const checkNumber = (newIndex) => {
     if (newIndex > data.length - 1) {
       return 0;
@@ -36,6 +39,7 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
     }
   };
 
+  // Changes data index to next company
   const nextCompany = () => {
     setDataIndex((index) => {
       let newIndex = index + 1;
@@ -43,6 +47,7 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
     });
   };
 
+  // Changes data index to previous company
   const prevCompany = () => {
     setDataIndex((index) => {
       let newIndex = index - 1;
@@ -60,36 +65,49 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
     setDataIndex(checkNumber(randomNumber));
   };
 
+  // Fetch live btc price from API
+  const fetchBtcPrice = async () => {
+    try {
+      const response = await fetch(btcApi);
+      const btcJson = await response.json();
+      // Remove commas and turn it into a number
+      const btcCurrentNew = parseFloat(btcJson.bpi.USD.rate.replace(/,/g, ""));
+      console.log(`btcCurrentNew is ${btcCurrentNew}`);
+      setBtcCurrentPriceNew(btcCurrentNew);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBtcPrice();
+  }, []);
+
   // Remove commas from initial investment and turn it into a number
   const formattedInitialInvestment = parseFloat(
     initialInvestment.replace(/,/g, "")
   );
   // Remove commas from annual income and turn it into a number
   const formattedAnnualIncome = parseFloat(annualIncome.replace(/,/g, ""));
-  //   console.log(`formattedAnnualIncome is ${formattedAnnualIncome}`);
-
   const shares = formattedInitialInvestment / ipoPrice;
   const btc = formattedInitialInvestment / btcClosingPriceOnIpoDate;
   const currentSharesValue = shares * companyCurrentPrice;
-  const currentBtcValue = btc * btcCurrentPrice;
-  //   console.log(`currentSharesValue is ${currentSharesValue}`);
-  //   console.log(`currentBtcValue is ${currentBtcValue}`);
+  const currentBtcValue = btc * btcCurrentPriceNew;
   const oppCost = currentBtcValue - currentSharesValue;
-  //   console.log(`oppCost is ${oppCost}`);
-
-  //   const medianPersonalIncome2019USA = 35977;
   const oppTime = (oppCost / formattedAnnualIncome).toFixed(1);
   const oppTimeYears = oppTime.toString().split(".")[0];
   const oppTimeMonths = Math.floor(
     Number("0." + oppTime.toString().split(".")[1]) * 12
   );
 
+  // Store data for column graph
   const columnChartData = [
     { x: company, y: currentSharesValue, color: "red" },
     { x: "BTC", y: currentBtcValue, color: "orange" },
     { x: "Opp. Cost", y: oppCost, color: "green" },
   ];
 
+  // Rounds opportunity cost to nearest 2 decimal places and turns it into a string with commas
   const calcOppCost = () => {
     return Number(oppCost.toFixed(2)).toLocaleString("en-US");
   };
@@ -100,6 +118,7 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
     "https://docs.google.com/uc?export=download&id=13eKa0XAgOn7mATB39bPIg5buNwvcaz2F"
   );
 
+  // Returns correct grammar based on number of months/years
   const formatYearMonth = () => {
     if (oppTimeYears == 0 && oppTimeMonths != 1) {
       return `${oppTimeMonths} months`; // e.g. 2 months, 0 months
@@ -119,18 +138,6 @@ const Bitcoin = ({ initialInvestment, annualIncome }) => {
       return `${oppTimeYears} years & ${oppTimeMonths} months`;
     }
   };
-
-  // zero years, no months - yes
-  // zero years, one month - yes
-  // zero years, months - yes
-  // one year, no months - yes
-  // one year, one month - yes
-  // one year, months - yes
-  // two years, no months - yes
-  // two years, one month - yes
-  // two years, months - yes
-  console.log(`annual income is ${annualIncome}`);
-  console.log(`formatted annual income is ${formattedAnnualIncome}`);
 
   return (
     <div className="bitcoin">

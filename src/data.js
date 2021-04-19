@@ -1,5 +1,7 @@
 // Create scraper or use API to auto update the companyCurrentPrice, btcCurrentPrice
 /// Data source is Yahoo finance and https://au.investing.com/crypto/bitcoin/btc-usd-historical-data
+// API for bitcoin current price in USD: https://api.coindesk.com/v1/bpi/currentprice.json
+// API for current company price data in USD: https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=FB&apikey=HS5TVS0YI1MOIRX6
 
 const data = [
   {
@@ -12,7 +14,6 @@ const data = [
     btcClosingPriceOnIpoDate: 6174.53,
     currentDate: "12 April 2021",
     companyCurrentPrice: 59.44,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 2,
@@ -24,7 +25,6 @@ const data = [
     btcClosingPriceOnIpoDate: 4069.11,
     currentDate: "12 April 2021",
     companyCurrentPrice: 59.85,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 3,
@@ -35,7 +35,6 @@ const data = [
     btcClosingPriceOnIpoDate: 5.1,
     currentDate: "12 April 2021",
     companyCurrentPrice: 311.54,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 4,
@@ -46,7 +45,6 @@ const data = [
     btcClosingPriceOnIpoDate: 1251.01,
     currentDate: "12 April 2021",
     companyCurrentPrice: 62.44,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 5,
@@ -57,7 +55,6 @@ const data = [
     btcClosingPriceOnIpoDate: 283.3,
     currentDate: "12 April 2021",
     companyCurrentPrice: 70.86,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 6,
@@ -69,7 +66,6 @@ const data = [
     btcClosingPriceOnIpoDate: 15455.4,
     currentDate: "12 April 2021",
     companyCurrentPrice: 176.49,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 7,
@@ -81,7 +77,6 @@ const data = [
     btcClosingPriceOnIpoDate: 15178.2,
     currentDate: "12 April 2021",
     companyCurrentPrice: 147.83,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 8,
@@ -93,7 +88,6 @@ const data = [
     btcClosingPriceOnIpoDate: 10974.91,
     currentDate: "12 April 2021",
     companyCurrentPrice: 233.39,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 9,
@@ -105,7 +99,6 @@ const data = [
     btcClosingPriceOnIpoDate: 235.34,
     currentDate: "12 April 2021",
     companyCurrentPrice: 1202,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 10,
@@ -117,7 +110,6 @@ const data = [
     btcClosingPriceOnIpoDate: 8118.97,
     currentDate: "12 April 2021",
     companyCurrentPrice: 118.97,
-    btcCurrentPrice: 59893.45,
   },
   {
     id: 11,
@@ -129,7 +121,6 @@ const data = [
     btcClosingPriceOnIpoDate: 8987.05,
     currentDate: "12 April 2021",
     companyCurrentPrice: 213.48,
-    btcCurrentPrice: 59893.45,
   },
 ];
 
