@@ -426,3 +426,17 @@ input::placeholder {
   margin-top: 0.5rem;
   margin-bottom: 2rem;
 }
+
+.tick {
+  height: 3rem;
+  width: 3rem;
+  margin-left: -1.75rem;
+  margin-top: -5rem;
+}
+
+.cross {
+  height: 2rem;
+  width: 2rem;
+  margin-left: -0.75rem;
+  margin-top: -5rem;
+}

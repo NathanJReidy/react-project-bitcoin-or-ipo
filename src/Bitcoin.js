@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import data from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 import "../node_modules/react-vis/dist/style.css";
+
 import {
   XYPlot,
   VerticalGridLines,
@@ -110,9 +111,9 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
   const currentBtcValue = btc * btcCurrentPriceNew;
   const oppCost = currentBtcValue - currentSharesValue;
   const oppTime = (oppCost / formattedAnnualIncome).toFixed(1);
-  const oppTimeYears = oppTime.toString().split(".")[0];
-  const oppTimeMonths = Math.floor(
-    Number("0." + oppTime.toString().split(".")[1]) * 12
+  const oppTimeYears = Math.abs(oppTime.toString().split(".")[0]);
+  const oppTimeMonths = Math.abs(
+    Math.floor(Number("0." + oppTime.toString().split(".")[1]) * 12)
   );
 
   // Store data for column graph
@@ -151,6 +152,10 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
       return `${oppTimeYears} years & ${oppTimeMonths} month`;
     } else if (oppTimeYears > 1 && oppTimeMonths > 1) {
       return `${oppTimeYears} years & ${oppTimeMonths} months`;
+    } else {
+      return `${Math.abs(oppTimeYears)} years & ${Math.abs(
+        oppTimeMonths
+      )} months`;
     }
   };
 
@@ -175,8 +180,33 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
           className="img"
           src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/bitcoin-icon.png"
         ></img>
+
+        {oppCost >= 0 ? (
+          <img
+            className="tick"
+            src="https://image.flaticon.com/icons/png/128/390/390973.png"
+          />
+        ) : (
+          <img
+            className="cross"
+            src="https://image.flaticon.com/icons/png/128/1828/1828665.png"
+          />
+        )}
+
         <h4 className="vs">VS</h4>
         <img className="img" src={image}></img>
+
+        {oppCost < 0 ? (
+          <img
+            className="tick"
+            src="https://image.flaticon.com/icons/png/128/390/390973.png"
+          />
+        ) : (
+          <img
+            className="cross"
+            src="https://image.flaticon.com/icons/png/128/1828/1828665.png"
+          />
+        )}
       </div>
 
       {isLoading ? null : (
