@@ -188,11 +188,34 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
             </span>{" "}
             <span className="span">instead of</span>
             <span className="company"> &ensp; {company}'s IPO &ensp; </span>
-            <span className="span">You would have gained an extra</span>
-            <span className="oppCost"> &ensp; ${calcOppCost()} &ensp; </span>
+            {oppCost >= 0 ? (
+              <>
+                <span className="span">You would have gained an extra</span>
+                <span className="oppCost">
+                  {" "}
+                  &ensp; ${calcOppCost()} &ensp;{" "}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="span">You would have missed an extra</span>
+                <span className="oppCost">
+                  {" "}
+                  &ensp; $
+                  {Math.abs(Number(oppCost.toFixed(2))).toLocaleString(
+                    "en-US"
+                  )}{" "}
+                  &ensp;{" "}
+                </span>
+              </>
+            )}
             {annualIncome != 0 ? (
               <>
-                <span className="span">& saved &ensp;</span>
+                {oppCost >= 0 ? (
+                  <span className="span">& saved &ensp;</span>
+                ) : (
+                  <span className="span">& added &ensp;</span>
+                )}
                 <span className="oppTime">{formatYearMonth()}</span>
                 <span className="span">&ensp; of your life spent working</span>
               </>
