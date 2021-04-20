@@ -54,6 +54,8 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
       setCurrentCompanyClosingPrice(closingPrice);
     } catch (error) {
       setIsLoading(false);
+      // query whether below set is needed
+      setCurrentCompanyClosingPrice(defaultCompanyPrice);
       console.log(`the error is: ${error}`);
     }
   };
@@ -232,11 +234,12 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
             />
           </XYPlot>
           <h4 className="ipoDate">
-            {company}'s IPO Date: {ipoDate}
+            {company}'s IPO Date: {ipoDate} | IPO Opening Price: ${ipoPrice} |
+            Current Price: ${currentCompanyClosingPrice}
           </h4>
           <h4 className="btcPriceIpoDate">
-            You could have bought {btc.toFixed(2)} btc at $
-            {btcClosingPriceOnIpoDate} USD each!
+            On {company}'s IPO, you could have bought {btc.toFixed(2)} btc at $
+            {btcClosingPriceOnIpoDate} each! 1 btc is now ${btcCurrentPriceNew}
           </h4>
         </>
       )}
