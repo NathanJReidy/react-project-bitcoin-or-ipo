@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Bitcoin from "./Bitcoin";
-import data from "./data";
 
 function App() {
   const [initialInvestment, setInitialInvestment] = useState("");
@@ -25,16 +24,11 @@ function App() {
       const btcJson = await response.json();
       // Remove commas and turn it into a number
       const btcCurrentNew = parseFloat(btcJson.bpi.USD.rate.replace(/,/g, ""));
-      console.log(`btcCurrentNew is ${btcCurrentNew}`);
       setBtcCurrentPriceNew(btcCurrentNew);
     } catch (error) {
       console.log(error);
     }
   };
-
-  // Good API Key: HS5TVS0YI1MOIRX6
-
-  // NEED TO CHANGE WHERE I STORE THE API KEY (NEEDS TO BE HIDDEN SO IT DOESN'T APPEAR ON GITHUB). Second API Key: 70S3V7F8GZY0NL7S. Third API Key: VRDG401PMUGDQ6FI
 
   useEffect(() => {
     fetchBtcPrice();
