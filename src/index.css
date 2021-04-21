@@ -449,7 +449,6 @@ input::placeholder {
   outline: none;
   border: 1px solid blue;
   cursor: pointer;
-  margin-left: 1.25rem;
 }
 
 .idiotBtn:hover {
@@ -466,4 +465,10 @@ input::placeholder {
 .currentOwner {
   text-decoration: underline;
   color: blue;
+}
+
+.share {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
 }

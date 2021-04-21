@@ -172,15 +172,6 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
       </div>
       <div className="footerContainer">
         <button
-          className="btn"
-          onClick={() => {
-            console.log("Open Twitter in new tab");
-            window.open("http://google.com", "_blank");
-          }}
-        >
-          Retweet this
-        </button>
-        <button
           className="idiotBtn"
           onClick={() => {
             randomCompany();

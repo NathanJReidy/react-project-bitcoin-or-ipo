@@ -1,4 +1,5 @@
 import React from "react";
+import { Share } from "react-twitter-widgets";
 
 const CalcContainer = ({
   id,
@@ -84,6 +85,41 @@ const CalcContainer = ({
             )}
             <span className="oppTime">{formatYearMonth()}</span>
             <span className="span">&ensp; of your life spent working</span>
+            {oppCost >= 0 ? (
+              <div className="share">
+                <Share
+                  options={{
+                    size: "large",
+                    text: `Wow. Bitcoin is a time machine! ⏱️👇
+
+If you bought $${initialInvestment} of #bitcoin instead of ${company}'s IPO you would have gained an extra $${calcOppCost()} & saved ${formatYearMonth()} of your life spent working 😱.
+
+See for yourself: `,
+                    hashtags: "bitcoinoripo",
+                  }}
+                  url="https://bitcoinoripo.com"
+                />
+              </div>
+            ) : (
+              <div className="share">
+                <Share
+                  options={{
+                    size: "large",
+                    text: `Wow. ${company} > Bitcoin! ⏱️👇
+
+If you bought $${initialInvestment} of #bitcoin instead of ${company}'s IPO you would have missed an extra $${Math.abs(
+                      Number(oppCost.toFixed(2))
+                    ).toLocaleString(
+                      "en-US"
+                    )} & added ${formatYearMonth()} of your life spent working 😱.
+
+See for yourself: `,
+                    hashtags: "bitcoinoripo",
+                  }}
+                  url="https://bitcoinoripo.com"
+                />
+              </div>
+            )}
           </>
         ) : null}
       </h3>
