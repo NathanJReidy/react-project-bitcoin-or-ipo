@@ -87,11 +87,23 @@ function App() {
         </div>
 
         {initialInvestment != "" && annualIncome != "" ? (
-          <Bitcoin
-            initialInvestment={initialInvestment}
-            annualIncome={annualIncome}
-            btcCurrentPriceNew={btcCurrentPriceNew}
-          />
+          <>
+            <Bitcoin
+              initialInvestment={initialInvestment}
+              annualIncome={annualIncome}
+              btcCurrentPriceNew={btcCurrentPriceNew}
+            />
+            <h4 className="donate">
+              <a href="http://google.com" target="_blank">
+                Donate bitcoin: Link
+              </a>
+            </h4>
+            <h4 className="currentOwner">
+              <a href="http://twitter.com" target="_blank">
+                Current owner: Link
+              </a>{" "}
+            </h4>
+          </>
         ) : null}
       </section>
     </main>

@@ -440,3 +440,30 @@ input::placeholder {
   margin-left: -0.75rem;
   margin-top: -5rem;
 }
+
+.idiotBtn {
+  background: white;
+  color: black;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  outline: none;
+  border: 1px solid blue;
+  cursor: pointer;
+  margin-left: 1.25rem;
+}
+
+.idiotBtn:hover {
+  background: red;
+  color: white;
+  border: 1px solid white;
+}
+
+.donate {
+  text-decoration: underline;
+  color: blue;
+}
+
+.currentOwner {
+  text-decoration: underline;
+  color: blue;
+}

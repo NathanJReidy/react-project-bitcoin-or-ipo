@@ -170,15 +170,26 @@ const Bitcoin = ({ initialInvestment, annualIncome, btcCurrentPriceNew }) => {
         <FaChevronLeft className="previousIcon" onClick={prevCompany} />
         <FaChevronRight className="nextIcon" onClick={nextCompany} />
       </div>
-      <button
-        className="btn"
-        onClick={() => {
-          randomCompany();
-          sound.play();
-        }}
-      >
-        I'm an idiot
-      </button>
+      <div className="footerContainer">
+        <button
+          className="btn"
+          onClick={() => {
+            console.log("Open Twitter in new tab");
+            window.open("http://google.com", "_blank");
+          }}
+        >
+          Retweet this
+        </button>
+        <button
+          className="idiotBtn"
+          onClick={() => {
+            randomCompany();
+            sound.play();
+          }}
+        >
+          I'm an idiot
+        </button>
+      </div>
     </div>
   );
 };
