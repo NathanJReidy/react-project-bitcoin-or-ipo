@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/react-project-bitcoin-or-ipo/static/css/main.2135867c.chunk.css",
-    "main.js": "/react-project-bitcoin-or-ipo/static/js/main.2545164e.chunk.js",
-    "main.js.map": "/react-project-bitcoin-or-ipo/static/js/main.2545164e.chunk.js.map",
+    "main.js": "/react-project-bitcoin-or-ipo/static/js/main.61d6e00f.chunk.js",
+    "main.js.map": "/react-project-bitcoin-or-ipo/static/js/main.61d6e00f.chunk.js.map",
     "runtime-main.js": "/react-project-bitcoin-or-ipo/static/js/runtime-main.c03d4012.js",
     "runtime-main.js.map": "/react-project-bitcoin-or-ipo/static/js/runtime-main.c03d4012.js.map",
     "static/css/2.adc6f56e.chunk.css": "/react-project-bitcoin-or-ipo/static/css/2.adc6f56e.chunk.css",
-    "static/js/2.4707e9e4.chunk.js": "/react-project-bitcoin-or-ipo/static/js/2.4707e9e4.chunk.js",
-    "static/js/2.4707e9e4.chunk.js.map": "/react-project-bitcoin-or-ipo/static/js/2.4707e9e4.chunk.js.map",
+    "static/js/2.0938be27.chunk.js": "/react-project-bitcoin-or-ipo/static/js/2.0938be27.chunk.js",
+    "static/js/2.0938be27.chunk.js.map": "/react-project-bitcoin-or-ipo/static/js/2.0938be27.chunk.js.map",
     "index.html": "/react-project-bitcoin-or-ipo/index.html",
     "static/css/2.adc6f56e.chunk.css.map": "/react-project-bitcoin-or-ipo/static/css/2.adc6f56e.chunk.css.map",
     "static/css/main.2135867c.chunk.css.map": "/react-project-bitcoin-or-ipo/static/css/main.2135867c.chunk.css.map",
-    "static/js/2.4707e9e4.chunk.js.LICENSE.txt": "/react-project-bitcoin-or-ipo/static/js/2.4707e9e4.chunk.js.LICENSE.txt"
+    "static/js/2.0938be27.chunk.js.LICENSE.txt": "/react-project-bitcoin-or-ipo/static/js/2.0938be27.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c03d4012.js",
     "static/css/2.adc6f56e.chunk.css",
-    "static/js/2.4707e9e4.chunk.js",
+    "static/js/2.0938be27.chunk.js",
     "static/css/main.2135867c.chunk.css",
-    "static/js/main.2545164e.chunk.js"
+    "static/js/main.61d6e00f.chunk.js"
   ]
 }
