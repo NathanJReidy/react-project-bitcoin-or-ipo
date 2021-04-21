@@ -93,14 +93,19 @@ function App() {
               annualIncome={annualIncome}
               btcCurrentPriceNew={btcCurrentPriceNew}
             />
-            <h4 className="donate">
-              <a href="http://google.com" target="_blank">
-                Donate bitcoin: Link
+            <h4>
+              <a
+                className="donate"
+                href="https://commerce.coinbase.com/checkout/13c28e57-7054-4187-a923-b83335bd9da9"
+                target="_blank"
+              >
+                Donate bitcoin to the pleb who made this
               </a>
+              <span className="loveEmoji"> ❤️‍</span>
             </h4>
             <h4 className="currentOwner">
               <a href="http://twitter.com" target="_blank">
-                Current owner: Link
+                Current owner: @
               </a>{" "}
             </h4>
           </>

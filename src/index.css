@@ -472,3 +472,7 @@ input::placeholder {
   flex-direction: row;
   margin-left: 1rem;
 }
+
+.loveEmoji {
+  color: red;
+}
