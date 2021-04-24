@@ -105,7 +105,7 @@ function App() {
             </h4>
             <h4 className="currentOwner">
               <a href="https://twitter.com/rationalaussie" target="_blank">
-                Current owner: @rationalaussie
+                Current owner: @RationalAussie
               </a>{" "}
             </h4>
           </>
