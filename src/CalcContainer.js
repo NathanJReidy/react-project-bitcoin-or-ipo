@@ -90,9 +90,9 @@ const CalcContainer = ({
                 <Share
                   options={{
                     size: "large",
-                    text: `Wow. Bitcoin is a time machine! ⏱️👇
+                    text: `Bitcoin buys time! ⏱️👇
 
-If you bought $${initialInvestment} of #bitcoin instead of ${company}'s IPO you would have gained an extra $${calcOppCost()} & saved ${formatYearMonth()} of your life spent working 😱.
+If you bought $${initialInvestment} of #bitcoin instead of ${company}'s IPO you would have gained an extra $${calcOppCost()} & saved ${formatYearMonth()} of your life spent working.
 
 See for yourself: `,
                     hashtags: "bitcoinoripo",

@@ -104,8 +104,8 @@ function App() {
               <span className="loveEmoji"> ❤️‍</span>
             </h4>
             <h4 className="currentOwner">
-              <a href="http://twitter.com" target="_blank">
-                Current owner: @
+              <a href="https://twitter.com/rationalaussie" target="_blank">
+                Current owner: @rationalaussie
               </a>{" "}
             </h4>
           </>
