@@ -103,11 +103,6 @@ function App() {
               </a>
               <span className="loveEmoji"> ❤️‍</span>
             </h4>
-            <h4 className="currentOwner">
-              <a href="https://twitter.com/rationalaussie" target="_blank">
-                Current owner: @RationalAussie
-              </a>{" "}
-            </h4>
           </>
         ) : null}
       </section>
